@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Json reading</title>
+</head>
+
+<body>
+    <input type="file" onchange="readFile(this)">
+
+    <script>
+
+        function readFile(input) {
+            let file = input.files[0];
+
+            let reader = new FileReader();
+
+            reader.readAsText(file);
+
+            //console.log(file);
+            //console.log(input.value);
+
+            reader.onload = function () {
+
+                console.log("\nresult: " + reader.result);
+                display(JSON.parse(reader.result));
+            };
+
+            reader.onerror = function () {
+                console.log("error: " + reader.error);
+            };
+        }
+
+        function display(obj) {
+            
+            for (let item of obj) {
+                console.log("name: " + item.name + " age: " + item.age);                
+            };
+        }
+    </script>
+</body>
+
+</html>
