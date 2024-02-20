@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AJAX GET példa</title>
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 </head>
 
 <body>
@@ -16,20 +16,24 @@
     <h3>tartalom load() használatával</h3>
     <div id="tartalom"><br id="nemJelenikMeg"></div>
     <br>
-    <h3>Data tartalom AJAX hívással</h3>
+    <h3>Data tartalom $ajax() hívással</h3>
     <div id="renderData"></div>
     <br>
-    <h3>Response tartalom AJAY hívással</h3>
+    <h3>Response tartalom $ajax() hívással</h3>
     <div id="renderResponse"></div>
     <br>
-
+    <h3>Tartalom $get() hívással</h3>
+    <div id="getTartalom"></div>
+    <br>
 
 
 <script>
+    let url = 'https://jsonplaceholder.org/users/1';
+
     $(document).ready(function () {
 
         // AJAX load(), akkor érdemes használni, ha közvetlen html adatokat akarsz megjelentetni
-        $("#content").load('https://jsonplaceholder.org/users/1', (response, status, xhr) => {
+        $("#content").load(url, (response, status, xhr) => {
             if (status == "success")
                 loadMegjelenites(response);
             if (status == "error")
@@ -37,16 +41,16 @@
         }),
 
         // AJAX load() adatok lekérésére
-        $("#nemJelenikMeg").load('https://jsonplaceholder.org/users/1', (response, status, xhr) => {
+        $("#nemJelenikMeg").load(url, (response, status, xhr) => {
             if (status == "success")
                 loadRendesMegjelenites(response);
-                if (status == "error")
-                    alert("Error: " + xhr.status + ": " + xhr.statusText);
+            if (status == "error")
+                alert("Error: " + xhr.status + ": " + xhr.statusText);
         }),
 
         // AJAX GET kérés küldése
         $.ajax({
-            url: 'https://jsonplaceholder.org/users/1', //'szerver_oldal.php', A szerver oldali fájl elérési útja
+            url: url, //'szerver_oldal.php', A szerver oldali fájl elérési útja
             type: 'GET',                                // metódus típusa
             data: {},                                  // küldendő adat a szervernek
             dataType: 'json',                          // Az elvárt válasz típusa (opcionális, például JSON)
@@ -65,7 +69,20 @@
                 // Minden esetlen lefutó kód
                 console.log('Befejezte a munkát az AJAX hívás.', xhr.responseJSON, status);
             }
-        });
+        }),
+
+
+        $.get(url, {}, function(data,status,xhr) {
+            if (status == "success") {
+                let content = `
+                    id: ${data.id} <br>
+                    name: ${data.firstname} ${data.lastname} <br>
+                    city: ${data.address.city}`
+                $('#getTartalom').html(content);
+            }
+            if (status == "error")
+                alert("Error: " + xhr.status + ": " + xhr.statusText);
+        }, "json")
     },
     );
 
