@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJAX GET példa</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+
+<body>
+       
+    <div id="content"></div>
+    
+<script>
+let url = "https://jsonplaceholder.typicode.com/todos";
+$(document).ready(
+
+    $.ajax({
+        url: url,
+        type: 'POST',
+        data: {
+            title: 'virágöntözés',
+            completed: false
+        }
+    })
+        .done(function(response, status, xhr) {
+            // Sikeres válasz esetén végrehajtandó műveletek
+            console.log(response);
+            showData(response);
+            return response;
+        })
+        .then(function(data) {
+            console.log("A thenben megkapott adat:", data);
+        })
+        .fail(function(xhr, status, error) {
+            // Hiba esetén végrehajtandó műveletek
+            console.error("Hibás kérés:", status, error, xhr);
+        })
+        .always(function(r, status, x) {
+            // Minden esetben végrehajtandó műveletek
+            // ha done: response, status, xhr
+            // ha fail: xhr, status, error
+            console.error("Ezt mindig végrehajtja.", r, status, x);
+        })
+);
+
+function showData(data) {
+    console.log(typeof data.completed);
+    $("#content").html(`
+    <h3>Az AJAX hívással visszatérő response megjelenítése</h3>
+    <table>
+        <tr><td>Id</td><td>${data.id}</td></tr>
+        <tr><td>Teendő</td><td>${data.title}</td></tr>
+        <tr><td>Kész</td><td>${data.completed == "true" ? "Kész": "Nem kész"}</td></tr>
+    </table>
+    `);
+}
+</script>
+
+</body>
+
+</html>
