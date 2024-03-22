@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Mini Játék</h1>
+    <p>Az alábbi gombra kattintva generálódik egy véletlenszerű szám, és meghatározza, hogy páros vagy páratlan.</p>
+    <p>A pontszám a játék közben változik.</p>
+    <div>
+        <p>Véletlenszerű szám:</p>
+        <span id="numberDisplay">-</span>
+    </div>
+    <div>
+        <p>Eredmény:</p>
+        <span id="resultDisplay">-</span>
+    </div>
+    <div>
+        <p>Pontszám:</p>
+        <span id="pointsDisplay">100</span>
+    </div>
+    <button id="button">Kattints a játékhoz</button>
+
+    <script>
+        const init = () => {
+            let points = 100
+
+            return () => {
+                const number = Math.round(Math.random() * 100)
+                numberDisplay.innetText = number
+
+                if (number % 2) {
+                    resultDisplay.innerText = 'odd'
+                    points -= 10
+                    pointsDisplay.innerText = points
+                } else {
+                    resultDisplay.innerText = 'even'
+                    points += 10
+                    pointsDisplay.innerText = points
+                }
+            }
+        }
+
+        const game = init()
+        button.addEventListener('click', game)
+    </script>
+</body>
+</html>
