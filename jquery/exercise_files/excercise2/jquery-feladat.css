@@ -1,17 +1,7 @@
-.boxV {
+.box {
     width: 100px;
     height: 100px;
     background-color: blue;
     margin-bottom: 10px;
     display: none;
-}
-
-
-.boxH {
-    width: 100px;
-    height: 100px;
-    background-color: blue;
-    margin-bottom: 10px;
-    display: none;
-    margin-left: 200px;
 }
