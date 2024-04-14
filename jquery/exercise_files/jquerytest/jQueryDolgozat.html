@@ -27,7 +27,6 @@
     <script type="text/javascript">
         $("document").ready(function () {
             // kód helye
-            $("p[id^=para][lang*=en-]").css("border", "3px solid red");
         });
     </script>
 
@@ -38,8 +37,7 @@
         <p>A <b>Create Content</b> gombra kattintva a createExample tartalma a következő paragrafusra változzon: "<b>Hi
                 there!</b>".</p>
         <p>A <b>Change All</b> gombra kattintva a createExample tartalma a következő paragrafusra változzon: "<b>
-                < p>This is a paragraph< / p>
-            </b>".</p>
+                < p>This is a paragraph< / p></b>".</p>
 
         <div id="createExample">
             <p class="a">This is paragraph 1</p>
@@ -56,21 +54,13 @@
     <script type="text/javascript">
         $("document").ready(function () {
             // kód helye
-            document.getElementById("create").addEventListener("click", function (evt) {
-                createContent();
-            });
-            document.getElementById("changeAll").addEventListener("click", function (evt) {
-                changeAllTheContent();
-            });
         });
         function createContent() {
             // kód helye
-            $("#createExample").html("<p>Hi there!</p>");
         }
 
         function changeAllTheContent() {
             // kód helye
-            $("#createExample p").text("<p>This is a paragraph</p>");
         }
     </script>
 
@@ -95,17 +85,10 @@
     <script type="text/javascript">
         $(function () {
             // kód helye
-            $("#evtTarget").on("mouseover mouseleave", highlight);
-
-            $("#evtTarget").on("click", function (evt) {
-                $("#evtTarget").off("mouseover mouseleave", highlight);
-                $("#evtTarget").removeClass("highlighted");
-            });
         });
 
         function highlight(evt) {
             // kód helye
-            $("#evtTarget").toggleClass("highlighted");
         }
     </script>
 
@@ -128,20 +111,7 @@
     <script type="text/javascript">
         $(function () {
             // kód helye
-            $("#fadein").click(function () {
-                $("#theDiv").fadeIn("normal");
-            });
-            $("#fadeout").click(function () {
-                $("#theDiv").fadeOut("normal");
-            });
-            $("#fadeto3").click(function () {
-                $("#theDiv").fadeTo("slow", 0.5);
-            });
-            $("#fadeup").click(function () {
-                $("#theDiv").fadeTo("slow", 1);
-            });
         });
-
     </script>
 
     <!-- 5. feladat ------------------------------------------------------>
@@ -152,7 +122,6 @@
         <p><b>Grow and move</b> gombra kattintva az elem eltolódik jobbra 500 pixelt, a betűnagyság 24 pt-re nő és az
             elem szélessége 500 pixelre nő.</p>
 
-
         <div id="theAnimateDiv">Animate Me</div>
         <button id="origin">Original</button>
         <button id="all">Grow and move</button>
@@ -160,14 +129,9 @@
     <script type="text/javascript">
         $(function () {
             // kód helye
-            $("#origin").click(function () {
-                $("#theAnimateDiv").animate({ left: "100px", fontSize: "16pt", width: "250px" }, 1000, "swing");
-            });
-            $("#all").click(function () {
-                $("#theAnimateDiv").animate({ left: "500px", fontSize: "24pt", width: "500px" }, 1000, "swing");
-            });
         });
     </script>
+    
     <style type="text/css">
         #theAnimateDiv {
             position: relative;
