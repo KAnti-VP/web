@@ -37,7 +37,7 @@ async function fetchDataAsync() {
   }
 }
 
-fetchDataAsyncArrow = async () => {
+const fetchDataAsyncArrow = async () => {
   try {
     const response = await fetch(url, {
       method: "GET",
@@ -52,7 +52,7 @@ fetchDataAsyncArrow = async () => {
   }
 }
 
-displayData = async () => {
+const displayData = async () => {
   const data = await fetchDataAsyncArrow()
   if (data)
     data.forEach(element => {
