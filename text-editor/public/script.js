@@ -8,7 +8,7 @@ function readFile() {
 }
 
 // Szöveg mentése a szerverre
-function saveText() {
+function saveFile() {
     const text = document.getElementById('text').value;
 
     fetch('/save', {
