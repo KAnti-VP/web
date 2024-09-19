@@ -1,9 +1,11 @@
 // Szöveg betöltése a szerverről
-fetch('/read')
+function readFile() {
+    fetch('/read')
     .then(response => response.text())
     .then(data => {
         document.getElementById('text').value = data;
     });
+}
 
 // Szöveg mentése a szerverre
 function saveText() {
