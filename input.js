@@ -1,5 +1,14 @@
 import readline from 'readline'
 
+/**
+ * Get input from the terminal as a string.
+ * 
+ * @param {string} question - The message to be printed to terminal.
+ * @returns {Promise<string>} The user's input as a string.
+ * 
+ * @example
+ * let name = await input("Enter your name");
+ */
 const input = (question) => {
     const rl = readline.createInterface({
         input: process.stdin,
@@ -13,6 +22,4 @@ const input = (question) => {
     })
 }
 
-const name = await input('Enter your name? ')
-const age = await input('Enter your age? ')
-console.log(`Hi ${name}, you are ${age} .`)
+export default input
